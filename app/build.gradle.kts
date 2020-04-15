@@ -1,6 +1,7 @@
 val kotlinVersion: String by project
 val koinVersion: String by project
 val roomVersion: String by project
+val gradleAndroidPluginVersion: String by project
 
 plugins {
     id("com.android.application")
@@ -75,7 +76,7 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
 
-    kapt("androidx.databinding:databinding-compiler:4.0.0-beta04")
+    kapt("androidx.databinding:databinding-compiler:$gradleAndroidPluginVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
 
     implementation("org.koin:koin-android:$koinVersion")

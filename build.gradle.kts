@@ -1,6 +1,7 @@
 buildscript {
     val kotlinVersion: String by project
     val koinVersion: String by project
+    val gradleAndroidPluginVersion: String by project
 
     repositories {
         google()
@@ -8,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.0-beta04")
+        classpath("com.android.tools.build:gradle:$gradleAndroidPluginVersion")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("org.koin:koin-gradle-plugin:$koinVersion")
     }
