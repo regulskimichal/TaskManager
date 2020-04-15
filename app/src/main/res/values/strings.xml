@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Task Manager</string>
+    <string name="title_edit_task">Edit task</string>
+    <string name="title_title">Title</string>
+    <string name="title_description">Description</string>
+    <string name="title_task_type">Task type</string>
+    <string name="title_done">Done</string>
+    <string name="title_in_progress">In progress</string>
+    <string name="title_due_date">Due date</string>
+    <string name="title_todo">Todo</string>
+    <string name="title_email">Email</string>
+    <string name="title_call">Call</string>
+    <string name="title_meeting">Meeting</string>
+    <string name="msg_task_removed">Task has been removed</string>
+    <string name="action_undo">Undo</string>
+    <string name="empty" />
+
+    <string-array name="task_types">
+        <item>@string/title_todo</item>
+        <item>@string/title_email</item>
+        <item>@string/title_call</item>
+        <item>@string/title_meeting</item>
+    </string-array>
+</resources>

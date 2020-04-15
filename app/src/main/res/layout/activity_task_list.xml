@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="pl.michalregulski.taskmanager.viewmodel.TaskListViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/taskListCL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.TaskListActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0"
+            android:background="#48000000"
+            android:visibility="invisible"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <include
+            android:id="@+id/content"
+            layout="@layout/layout_task"
+            app:viewModel="@{viewModel}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:padding="@dimen/fab_margin">
+
+            <TextView
+                android:id="@+id/addTodoTV"
+                style="@style/AppTheme.FABMenu.Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/title_todo"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/addTodoFAB"
+                app:layout_constraintEnd_toStartOf="@+id/addTodoFAB"
+                app:layout_constraintTop_toTopOf="@id/addTodoFAB" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addTodoFAB"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:visibility="invisible"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toTopOf="@+id/addEmailFAB"
+                app:layout_constraintEnd_toEndOf="@id/fab"
+                app:layout_constraintStart_toStartOf="@id/fab"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_assignment_turned_in_black_24dp" />
+
+            <TextView
+                android:id="@+id/addEmailTV"
+                style="@style/AppTheme.FABMenu.Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/title_email"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/addEmailFAB"
+                app:layout_constraintEnd_toStartOf="@+id/addEmailFAB"
+                app:layout_constraintTop_toTopOf="@id/addEmailFAB" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addEmailFAB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:visibility="invisible"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toTopOf="@+id/addCallFAB"
+                app:layout_constraintEnd_toEndOf="@id/fab"
+                app:layout_constraintStart_toStartOf="@id/fab"
+                app:layout_constraintTop_toBottomOf="@id/addTodoFAB"
+                app:srcCompat="@drawable/ic_email_black_24dp" />
+
+            <TextView
+                android:id="@+id/addCallTV"
+                style="@style/AppTheme.FABMenu.Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/title_call"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/addCallFAB"
+                app:layout_constraintEnd_toStartOf="@+id/addCallFAB"
+                app:layout_constraintTop_toTopOf="@id/addCallFAB" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addCallFAB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:visibility="invisible"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toTopOf="@+id/addMeetingFAB"
+                app:layout_constraintEnd_toEndOf="@id/fab"
+                app:layout_constraintStart_toStartOf="@id/fab"
+                app:layout_constraintTop_toBottomOf="@id/addEmailFAB"
+                app:srcCompat="@drawable/ic_phone_black_24dp" />
+
+            <TextView
+                android:id="@+id/addMeetingTV"
+                style="@style/AppTheme.FABMenu.Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/title_meeting"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/addMeetingFAB"
+                app:layout_constraintEnd_toStartOf="@+id/addMeetingFAB"
+                app:layout_constraintTop_toTopOf="@id/addMeetingFAB" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addMeetingFAB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:visibility="invisible"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toTopOf="@+id/fab"
+                app:layout_constraintEnd_toEndOf="@id/fab"
+                app:layout_constraintStart_toStartOf="@id/fab"
+                app:layout_constraintTop_toBottomOf="@id/addCallFAB"
+                app:srcCompat="@drawable/ic_people_black_24dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_add_black_24dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
