@@ -21,7 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.TaskListActivity" />
-        <activity android:name=".ui.AddEditTaskActivity" />
+        <activity
+            android:name=".ui.AddEditTaskActivity"
+            android:windowSoftInputMode="stateVisible" />
     </application>
 
 </manifest>
