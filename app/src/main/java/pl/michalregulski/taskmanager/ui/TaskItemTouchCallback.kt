@@ -4,7 +4,6 @@ import android.content.res.Resources.NotFoundException
 import android.graphics.Canvas
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.VectorDrawable
 import androidx.cardview.widget.CardView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
@@ -23,20 +22,20 @@ class TaskItemTouchCallback(
     private val taskAdapter: TaskAdapter // I'm not sure about if these references won't cause memory leaks
 ) : ItemTouchHelper.SimpleCallback(0, LEFT or RIGHT) {
 
-    private val deleteIcon: Drawable =
-        ContextCompat.getDrawable(coordinatorLayout.context, R.drawable.ic_delete_black_24dp)
-            ?: throw NotFoundException()
-
-    private val doneIcon: Drawable =
-        ContextCompat.getDrawable(coordinatorLayout.context, R.drawable.ic_baseline_done_24)
-            ?: throw NotFoundException()
-
-    private val inProgressIcon: Drawable =
-        ContextCompat.getDrawable(coordinatorLayout.context, R.drawable.ic_baseline_redo_24)
-            ?: throw NotFoundException()
-
     private val iconTint: Int =
         ContextCompat.getColor(coordinatorLayout.context, R.color.onPrimaryColor)
+
+    private val deleteIcon =
+        ContextCompat.getDrawable(coordinatorLayout.context, R.drawable.ic_delete_black_24dp)
+            ?.apply { setTint(iconTint) } ?: throw NotFoundException()
+
+    private val doneIcon =
+        ContextCompat.getDrawable(coordinatorLayout.context, R.drawable.ic_baseline_done_24)
+            ?.apply { setTint(iconTint) } ?: throw NotFoundException()
+
+    private val inProgressIcon =
+        ContextCompat.getDrawable(coordinatorLayout.context, R.drawable.ic_baseline_redo_24)
+            ?.apply { setTint(iconTint) } ?: throw NotFoundException()
 
     private val removalBackgroundColor: Int =
         ContextCompat.getColor(coordinatorLayout.context, R.color.red)
@@ -48,10 +47,11 @@ class TaskItemTouchCallback(
         ContextCompat.getColor(coordinatorLayout.context, R.color.orange)
 
     private val background: ColorDrawable = ColorDrawable()
-    private var icon: Drawable = VectorDrawable()
+
+    private var icon: Drawable? = null
 
     override fun onChildDraw(
-        c: Canvas,
+        canvas: Canvas,
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
         dX: Float,
@@ -60,7 +60,7 @@ class TaskItemTouchCallback(
         isCurrentlyActive: Boolean
     ) {
         super.onChildDraw(
-            c,
+            canvas,
             recyclerView,
             viewHolder,
             dX,
@@ -88,13 +88,9 @@ class TaskItemTouchCallback(
                     )
                 }
 
-                deleteIcon.apply {
-                    setTint(iconTint)
+                icon = deleteIcon.apply {
                     setBounds(iconLeft, iconTop, iconRight, iconBottom)
                 }
-
-                background.draw(c)
-                deleteIcon.draw(c)
             }
             dX < 0 -> { // Swiping to the left
                 if (recyclerView.itemAnimator?.isRunning == false) {
@@ -121,21 +117,19 @@ class TaskItemTouchCallback(
                         )
                     }
 
-                    currentIcon.apply {
-                        setTint(iconTint)
+                    icon = currentIcon.apply {
                         setBounds(iconLeft, iconTop, iconRight, iconBottom)
-                        draw(c)
                     }
-
-                    icon = currentIcon
                 }
-
-                background.draw(c)
-                icon.draw(c)
             }
             else -> { // view is unSwiped
                 background.setBounds(0, 0, 0, 0)
             }
+        }
+
+        if (dX != 0.0F) {
+            background.draw(canvas)
+            icon?.draw(canvas)
         }
     }
 
