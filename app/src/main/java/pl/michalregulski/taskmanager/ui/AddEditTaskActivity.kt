@@ -41,7 +41,7 @@ class AddEditTaskActivity : AppCompatActivity() {
         setupFocusListeners(binding.root, binding.content.root)
         setupDateTimePicker(binding.content.dueDateET)
         setupTaskTypePicker(binding.content.taskTypeET)
-        loadTaskIfAvailable()
+        prepareData()
     }
 
     private fun setupSupportActionBar(toolbar: Toolbar) {
@@ -124,7 +124,7 @@ class AddEditTaskActivity : AppCompatActivity() {
         taskTypeET.setAdapter(TaskTypeAdapter(this))
     }
 
-    private fun loadTaskIfAvailable() {
+    private fun prepareData() {
         val id: Long? = intent.getSerializableExtra(EXTRA_ID) as Long?
         if (id != null) {
             viewModel.setTask(id)
