@@ -1,2 +1,2 @@
-rootProject.name = "Task Manager"
+rootProject.name = "TaskManager"
 include(":app")

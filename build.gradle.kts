@@ -5,20 +5,20 @@ buildscript {
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
         classpath("com.android.tools.build:gradle:$gradleAndroidPluginVersion")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        classpath("org.koin:koin-gradle-plugin:$koinVersion")
+        classpath("io.insert-koin:koin-gradle-plugin:$koinVersion")
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
