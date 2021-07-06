@@ -81,7 +81,7 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-viewmodel:$koinVersion")
     implementation("io.insert-koin:koin-androidx-fragment:$koinVersion")
 
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.room:room-testing:$roomVersion")
 
     androidTestImplementation("androidx.test:rules:1.4.0")
